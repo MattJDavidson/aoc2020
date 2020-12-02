@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 import sys
+from itertools import starmap
 from typing import Tuple
 
 
@@ -18,8 +19,9 @@ def main():
     processed_inputs = [
         (tuple(map(int, line[0].split("-"))), line[1][0], line[2]) for line in inputs
     ]
-    print(sum([is_password_valid(*args) for args in processed_inputs]))
-    print(sum([is_password_valid_2(*args) for args in processed_inputs]))
+
+    print(sum(starmap(is_password_valid, processed_inputs)))
+    print(sum(starmap(is_password_valid_2, processed_inputs)))
 
 
 if __name__ == "__main__":
