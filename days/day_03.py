@@ -5,12 +5,12 @@ from functools import reduce
 from itertools import starmap, cycle, count, islice
 
 
-def iterations_that_hit_trees_until_bottom(right, down):
+def iterations_that_hit_trees_until_bottom(right_increment, down_increment):
     # get new hillside for each run, otherwise iterators maintain state
     hillside = [cycle(line.strip()) for line in open("../inputs/03_1.txt", "r")]
     return sum(
-        list(islice(x, y - 1, y)) == ["#"]
-        for x, y in zip(hillside[::down], count(1, right))
+        list(islice(line, position - 1, position)) == ["#"]
+        for line, position in zip(hillside[::down_increment], count(1, right_increment))
     )
 
 
