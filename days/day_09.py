@@ -26,16 +26,12 @@ def main():
     print(target)
 
     current_range = deque()
-    range_total = 0
 
     numbers = iter(previous_numbers)
-    while range_total != target or not current_range:
-        if range_total < target:
-            new_number = next(numbers)
-            current_range.append(new_number)
-            range_total += new_number
-        elif range_total > target:
-            range_total -= current_range.popleft()
+    while sum(current_range) != target or not current_range:
+        current_range.append(next(numbers)) if sum(
+            current_range
+        ) < target else current_range.popleft()
 
     print(sum((min(current_range), max(current_range))))
 
